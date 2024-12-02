@@ -1,6 +1,7 @@
 <template>
 	<view>
-		
+		<view>{{username}}</view>
+		<view v-for="one in tel">{{one}}</view>
 	</view>
 </template>
 
@@ -8,7 +9,8 @@
 	export default {
 		data() {
 			return {
-				username:"Scott"
+				username:"Scott",
+				tel:['13312345678','18612345678']
 			}
 		},
 		methods: {
