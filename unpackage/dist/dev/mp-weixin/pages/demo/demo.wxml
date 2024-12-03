@@ -1,1 +1,0 @@
-<view><view>{{a}}</view><view wx:for="{{b}}" wx:for-item="one">{{one.a}}</view><view wx:if="{{c}}"><button bindtap="{{d}}">我要报名</button></view><view><input type="text" placeholder="输入地址" value="{{e}}" bindinput="{{f}}"/></view><view>{{g}}</view></view>
