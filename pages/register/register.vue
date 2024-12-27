@@ -22,14 +22,14 @@
 				let that=this
 				if(that.registerCode==null||that.registerCode.length==0){
 					uni.showToast({
-						icon:'none'.,
+						icon:'none',
 						title:"邀请码不能为空"
 					})
 					return
 				}
 				else if(/^[0-9]{6}$/.test(that.registerCode)==false){
 					uni.showToast({
-						icon:'none'.,
+						icon:'none',
 						title:"邀请码必须是6位数字"
 					})
 					return
@@ -44,8 +44,20 @@
 							success:function(resp){
 								let nickName = resp.userInfo.nickName
 								let avatarUrl = resp.userInfo.avatarUrl
-								console.log(nickName)
-								console.log(avatarUrl)
+								// console.log(nickName)
+								// console.log(avatarUrl)
+								let data={
+									code:code,
+									nickname:nickName,
+									photo:avatarUrl,
+									registerCode:that.registerCode
+								}
+								that.ajax(that.url.register,"POST",data,function(resp){
+									let permission=resp.data.permission
+									uni.setStorageSync("permission",permission)
+									console.log(permission)
+									//TODO 跳转到index页面
+								});
 							}
 						})
 					}
