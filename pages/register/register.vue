@@ -14,11 +14,19 @@
 	export default {
 		data() {
 			return {
-				
+				registerCode:""
 			}
 		},
 		methods: {
 			register:function(){
+				let that=this
+				if(that.registerCode==null||that.registerCode.length==0){
+					uni.showToast({
+						icon:'none'.,
+						title:"邀请码不能为空"
+					})
+					return
+				}
 				uni.login({
 					provider:'weixin',
 					success:function(resp){
