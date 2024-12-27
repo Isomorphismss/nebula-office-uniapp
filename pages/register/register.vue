@@ -27,6 +27,13 @@
 					})
 					return
 				}
+				else if(/^[0-9]{6}$/.test(that.registerCode)==false){
+					uni.showToast({
+						icon:'none'.,
+						title:"邀请码必须是6位数字"
+					})
+					return
+				}
 				uni.login({
 					provider:'weixin',
 					success:function(resp){
