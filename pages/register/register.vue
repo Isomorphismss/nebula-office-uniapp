@@ -37,7 +37,7 @@
 				uni.login({
 					provider:'weixin',
 					success:function(resp){
-						// console.log(resp.code)
+						console.log(resp.code)
 						let code = resp.code
 						uni.getUserInfo({
 							provider:'weixin',
@@ -55,7 +55,7 @@
 								that.ajax(that.url.register,"POST",data,function(resp){
 									let permission=resp.data.permission
 									uni.setStorageSync("permission",permission)
-									console.log(permission)
+									// console.log(permission)
 									//TODO 跳转到index页面
 								});
 							}
