@@ -1,8 +1,23 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+	<view class="page">
+		<view class="page">
+			<swiper circular="true" duration="1000" interval="8000" class="swiper">
+				<swiper-item>
+					<image mode="widthFix" src="https://static-1334177744.cos.na-ashburn.myqcloud.com/img%2Fbanner%2Fswiper-1.jpg"></image>
+				</swiper-item>
+				<swiper-item>
+					<image mode="widthFix" src="https://static-1334177744.cos.na-ashburn.myqcloud.com/img%2Fbanner%2Fswiper-2.jpg"></image>
+				</swiper-item>
+				<swiper-item>
+					<image mode="widthFix" src="https://static-1334177744.cos.na-ashburn.myqcloud.com/img%2Fbanner%2Fswiper-3.jpg"></image>
+				</swiper-item>
+				<swiper-item>
+					<image mode="widthFix" src="https://static-1334177744.cos.na-ashburn.myqcloud.com/img%2Fbanner%2Fswiper-4.jpg"></image>
+				</swiper-item>
+				<swiper-item>
+					<image mode="widthFix" src="https://static-1334177744.cos.na-ashburn.myqcloud.com/img%2Fbanner%2Fswiper-5.jpg"></image>
+				</swiper-item>
+			</swiper>
 		</view>
 	</view>
 </template>
@@ -11,7 +26,7 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				
 			}
 		},
 		onLoad() {
@@ -23,30 +38,6 @@
 	}
 </script>
 
-<style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
+<style lang="less">
+	@import url("index.less");
 </style>
