@@ -35,7 +35,10 @@
 							uni.setStorageSync("permission",permission)
 						})
 						console.log("success")
-						//TODO 跳转到登陆页面
+						//跳转到登陆页面
+						uni.switchTab({
+							url:"/pages/index/index"
+						})
 					},
 					fail:function(e){
 						console.log(e)
