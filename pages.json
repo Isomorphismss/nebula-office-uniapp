@@ -28,6 +28,13 @@
 				"navigationBarTitleText" : "新用户注册",
 				"enablePullDownRefresh": false
 			}
+		},
+		{
+			"path" : "pages/meeting_list/meeting_list",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"globalStyle": {
