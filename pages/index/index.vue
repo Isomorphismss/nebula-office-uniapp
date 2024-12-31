@@ -20,6 +20,14 @@
 			</swiper>
 		</view>
 	</view>
+	<view class="notify-container">
+		<view class="notify-title">
+			<image src="../../static/icon-1.png" mode="widthFix" class="notify-icon"></image>
+			消息提醒
+		</view>
+		<view class="notify-content">你有{{ unreadRows }}条未读消息</view>
+		<image src="../../static/icon-2.png" mode="widthFix" class="more-icon"></image>
+	</view>
 </template>
 
 <script>

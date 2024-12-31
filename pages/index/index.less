@@ -8,3 +8,40 @@
 		width: 100% !important;
 	}
 }
+.notify-container{
+	background-color: #fff;
+	padding: 25rpx;
+	position: relative;
+	margin-bottom: 20rpx;
+	.notify-title{
+		font-size: 34rpx;
+		color: @background-color;
+		margin-bottom: 10rpx;
+		.notify-icon{
+			width: 38rpx;
+			vertical-align: -8rpx;
+			margin-right: 5rpx;
+		}
+	}
+	.notify-content{
+		font-size: 30rpx;
+		color: @font-color;
+		&:before{
+			display: inline-block;
+			content: "";
+			width: 12rpx;
+			height: 12rpx;
+			border-radius: 6rpx;
+			background-color: red;
+			margin-left: 18rpx;
+			margin-right: 15rpx;
+			vertical-align: 3rpx;
+		}
+	}
+	.more-icon{
+		position: absolute;
+		right: 5rpx;
+		width: 60rpx;
+		top: 50rpx;
+	}
+}
