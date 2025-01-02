@@ -95,7 +95,12 @@
 
 		},
 		methods: {
-
+			toPage: function(name, url) {
+				//TODO 验证用户的权限
+				uni.navigateTo({
+					url: url
+				});
+			}
 		}
 	}
 </script>
