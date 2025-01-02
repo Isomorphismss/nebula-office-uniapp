@@ -25,7 +25,30 @@
 			}
 		},
 		methods: {
-			
+			clickBtn: function() {
+				let that = this;
+				if (that.btnText == '拍照') {
+					let ctx = wx.createCameraContext();
+					ctx.takePhoto({
+						quality: 'high',
+						success: function(resp) {
+							console.log(resp.tempImagePath);
+							that.photoPath = resp.tempImagePath;
+							that.showCamera = false;
+							that.showImage = true;
+							that.btnText = '签到';
+						}
+					});
+				} 
+				else {
+					//这里是点击签到按钮
+				}
+			},
+			afresh: function() {
+				this.showCamera = true;
+				this.showImage = false;
+				this.btnText = '拍照';
+			}
 		}
 	}
 </script>
