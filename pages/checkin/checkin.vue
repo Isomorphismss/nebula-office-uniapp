@@ -14,6 +14,8 @@
 </template>
 
 <script>
+	var QQMapWX = require('../../lib/qqmap-wx-jssdk.min.js');
+	var qqmapsdk;
 	export default {
 		data() {
 			return {
@@ -23,6 +25,11 @@
 				showCamera: true,
 				showImage: false
 			}
+		},
+		onLoad: function() {
+			qqmapsdk = new QQMapWX({
+				key: 'Redacted'
+			});
 		},
 		methods: {
 			clickBtn: function() {
@@ -55,8 +62,23 @@
 						success: function(resp) {
 							let latitude = resp.latitude;
 							let longitude = resp.longitude;
-							console.log(latitude)
-							console.log(longitude)
+							// console.log(latitude)
+							// console.log(longitude)
+							qqmapsdk.reverseGeocoder({
+								location: {
+									latitude: latitude,
+									longitude: longitude
+								},
+								success: function(resp) {
+									console.log(resp.result);
+									let address = resp.result.address;
+									let addressComponent = resp.result.address_component;
+									let nation = addressComponent.nation;
+									let province = addressComponent.province;
+									let city = addressComponent.city;
+									let district = addressComponent.district;
+								}
+							})
 						}
 					})
 				}
