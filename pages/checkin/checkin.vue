@@ -41,7 +41,24 @@
 					});
 				} 
 				else {
-					//这里是点击签到按钮
+					uni.showLoading({
+						title: '签到中请稍后'
+					});
+					
+					setTimeout(function() {
+						uni.hideLoading();
+					}, 30000);
+					
+					//获取地理定位
+					uni.getLocation({
+						type: 'wgs84',
+						success: function(resp) {
+							let latitude = resp.latitude;
+							let longitude = resp.longitude;
+							console.log(latitude)
+							console.log(longitude)
+						}
+					})
 				}
 			},
 			afresh: function() {
