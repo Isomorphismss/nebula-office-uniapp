@@ -31,22 +31,22 @@
 				key: 'Redacted'
 			});
 		},
-		onShow: function() {
-			let that = this;
-			that.ajax(that.url.validCanCheckIn, 'GET', null, function(resp) {
-				console.log("现在不可以进行考勤！");
-				let msg = resp.data.msg;
-				if (msg != '可以考勤') {
-					setTimeout(function() {
-						uni.showToast({
-							title: msg,
-							icon: 'none'
-						});
-					}, 1000);
-					that.canCheckin = false;
-				}
-			});
-		},
+		// onShow: function() {
+		// 	let that = this;
+		// 	that.ajax(that.url.validCanCheckIn, 'GET', null, function(resp) {
+		// 		console.log("现在不可以进行考勤！");
+		// 		let msg = resp.data.msg;
+		// 		if (msg != '可以考勤') {
+		// 			setTimeout(function() {
+		// 				uni.showToast({
+		// 					title: msg,
+		// 					icon: 'none'
+		// 				});
+		// 			}, 1000);
+		// 			that.canCheckin = false;
+		// 		}
+		// 	});
+		// },
 		methods: {
 			clickBtn: function() {
 				let that = this;
