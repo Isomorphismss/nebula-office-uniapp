@@ -10,11 +10,14 @@ const app = new Vue({
 })
 app.$mount()
 
-let baseUrl = "http://127.0.0.1:8080/emos-wx-api"
+let baseUrl = "http://Redacted/emos-wx-api"
 
 Vue.prototype.url={
 	register:baseUrl+"/user/register",
-	login:baseUrl+"/user/login"
+	login:baseUrl+"/user/login",
+	checkin: baseUrl + "/checkin/checkin",
+	createFaceModel: baseUrl + "/checkin/createFaceModel",
+	validCanCheckIn: baseUrl + "/checkin/validCanCheckIn",
 }
 
 Vue.prototype.ajax=function(url,method,data,fun){
@@ -35,8 +38,8 @@ Vue.prototype.ajax=function(url,method,data,fun){
 				let data=resp.data
 				if(data.hasOwnProperty("token")){
 					let token=data.token
-					console.log(token)
-					uni.setStorageSync("token",token)
+					console.log("ajax返回的token为：", token)
+					uni.setStorageSync("token", token)
 				}
 				fun(resp)
 			}
