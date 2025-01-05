@@ -30,11 +30,13 @@
 					provider:'weixin',
 					success:function(resp){
 						let code=resp.code
+						console.log("一次性授权码为：", code)
 						that.ajax(that.url.login,"POST",{"code":code},function(resp){
 							let permission=resp.data.permission
-							uni.setStorageSync("permission",permission)
+							uni.setStorageSync("permission", permission)
+							console.log("登陆成功！")
+							console.log("我的权限为：", permission)
 						})
-						console.log("success")
 						//跳转到登陆页面
 						uni.switchTab({
 							url:"/pages/index/index"
