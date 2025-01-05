@@ -42,6 +42,27 @@
 				</view>
 			</view>
 		</view>
+		<view class="checkin-report">
+			<image src="../../static/big-icon-1.png" mode="widthFix" class="big-icon"></image>
+			<view class="report-title">
+				<text class="days">{{ checkinDays }}</text>
+				<text class="unit">天</text>
+			</view>
+			<view class="sub-title">
+				<text>累计签到</text>
+				<view class="line"></view>
+			</view>
+			<view class="calendar-container">
+				<view class="calendar" v-for="one in weekCheckin" :key="one">
+					<image src="../../static/icon-9.png" mode="widthFix" class="calendar-icon" v-if="one.type != '节假日'"></image>
+					<image src="../../static/icon-10.png" mode="widthFix" class="calendar-icon" v-if="one.type == '节假日'"></image>
+					<text class="day">{{ one.day }}</text>
+					<text class="result green" v-if="one.status == '正常'">正常</text>
+					<text class="result yellow" v-if="one.status == '迟到'">迟到</text>
+					<text class="result red" v-if="one.status == '缺勤'">缺勤</text>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -66,8 +87,8 @@
 					{type:"工作日",day:"周三",status:"正常"},
 					{type:"工作日",day:"周四",status:"正常"},
 					{type:"工作日",day:"周五",status:"正常"},
-					{type:"休息日",day:"周六",status:""},
-					{type:"休息日",day:"周日",status:""}
+					{type:"节假日",day:"周六",status:""},
+					{type:"节假日",day:"周日",status:""}
 				]
 			};
 		},
