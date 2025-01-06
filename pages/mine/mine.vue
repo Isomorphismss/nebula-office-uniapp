@@ -49,6 +49,15 @@
 				photo: ''
 			}
 		},
+		onShow: function() {
+			let that = this;
+			that.ajax(that.url.searchUserSummary,"GET",null,function(resp){
+				let result = resp.data.result;
+				that.name = result.name;
+				that.deptName = result.deptName;
+				that.photo = result.photo;
+			})
+		},
 		methods: {
 			
 		}
