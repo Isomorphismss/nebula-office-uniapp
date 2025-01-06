@@ -24,6 +24,6 @@
 	}
 </script>
 
-<style>
-
+<style lang="less">
+	@import url("my_checkin.less");
 </style>
