@@ -14,18 +14,18 @@
 					<text class="column-title">正常签到</text>
 					<text class="number">{{sum_1}}</text>
 				</view>
-				<view class="colum orange">
+				<view class="column orange">
 					<text class="column-title">迟到签到</text>
 					<text class="number">{{sum_2}}</text>
 				</view>
-				<view class="colum red">
+				<view class="column red">
 					<text class="column-title">缺勤签到</text>
 					<text class="number">{{sum_3}}</text>
 				</view>
 			</view>
 		</view>
 		<view class="calendar-container">
-			<uni-calendar :insert="true" :lunar="false" :selected="list" @monthSwitch="changeMonth" @confirm="changeMonth" />
+			<uni-calendar :insert="true" :lunar="false" :selected="list"/>
 		</view>
 	</view>
 </template>
