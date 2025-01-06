@@ -44,8 +44,8 @@
 		},
 		data() {
 			return {
-				name: '李强',
-				deptName: '管理部',
+				name: '',
+				deptName: '',
 				photo: ''
 			}
 		},

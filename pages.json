@@ -54,28 +54,28 @@
 			"path" : "pages/mine/mine",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "我的"
 			}
 		},
 		{
 			"path" : "pages/checkin/checkin",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "在线签到"
 			}
 		},
 		{
 			"path" : "pages/checkin_result/checkin_result",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "签到结果"
 			}
 		},
 		{
-			"path" : "my_checkin/my_checkin",
+			"path" : "pages/my_checkin/my_checkin",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "我的考勤"
 			}
 		}
 	],
