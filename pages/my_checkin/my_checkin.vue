@@ -44,8 +44,43 @@
 				sum_3: 0
 			}
 		},
+		onShow: function() {
+			let that = this;
+			let now = new Date();
+			let year = now.getFullYear();
+			let month = now.getMonth() + 1;
+			that.searchCheckin(that, year, month);
+		}, 
 		methods: {
-			
+			searchCheckin: function(ref, year, month) {
+				let that = ref;
+				that.sum_1 = 0;
+				that.sum_2 = 0;
+				that.sum_3 = 0;
+				that.list.length = 0;
+				that.ajax(that.url.searchMonthCheckin, 'POST', { year: year, month: month }, function(resp) {
+					for (let one of resp.data.list) {
+						if (one.status!=null && one.status != '') {
+							let color = '';
+							if (one.status == '正常') {
+								color = 'green';
+							} else if (one.status == '迟到') {
+								color = 'orange';
+							} else if (one.status == '缺勤') {
+								color = 'red';
+							}
+							that.list.push({
+								date: one.date,
+								info: one.status,
+								color: color
+							});
+						}
+					}
+					that.sum_1 = resp.data.sum_1;
+					that.sum_2 = resp.data.sum_2;
+					that.sum_3 = resp.data.sum_3;
+				});
+			}
 		}
 	}
 </script>
