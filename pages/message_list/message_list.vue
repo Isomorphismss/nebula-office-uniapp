@@ -36,6 +36,6 @@
 	}
 </script>
 
-<style>
-
+<style lang="less">
+	@import url("message_list.less");
 </style>
