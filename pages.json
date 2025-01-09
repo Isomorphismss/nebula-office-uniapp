@@ -77,6 +77,13 @@
 			{
 				"navigationBarTitleText" : "我的考勤"
 			}
+		},
+		{
+			"path" : "pages/message_list/message_list",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"globalStyle": {
