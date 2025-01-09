@@ -89,9 +89,16 @@
 	import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue';
 	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue';
 	export default {
+		components: {
+			uniPopup,
+			uniPopupMessage,
+			uniPopupDialog
+		}, 
 		data() {
 			return {
 				unreadRows: 0,
+				lastRows: 0,
+				timer: null
 			}
 		},
 		onLoad() {
