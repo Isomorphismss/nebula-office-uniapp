@@ -22,6 +22,7 @@ Vue.prototype.url={
 	searchUserSummary: baseUrl + "/user/searchUserSummary",
 	searchMonthCheckin: baseUrl + "/checkin/searchMonthCheckin",
 	refreshMessage: baseUrl + "/message/refreshMessage",
+	searchMessageByPage: baseUrl + "/message/searchMessageByPage"
 }
 
 Vue.prototype.ajax=function(url,method,data,fun){
