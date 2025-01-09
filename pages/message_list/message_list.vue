@@ -39,8 +39,52 @@
 				isLastPage: false
 			}
 		},
+		onShow: function() {
+			let that = this;
+			that.page = 1;
+			that.isLastPage = false;
+			uni.pageScrollTo({
+				scrollTop: '0'
+			});
+			this.loadMessageList(this);
+		}, 
+		onReachBottom: function() {
+			if (this.isLastPage) {
+				return;
+			}
+			this.page = this.page + 1;
+			this.loadMessageList(this);
+		}, 
 		methods: {
-			
+			loadMessageList: function(ref) {
+				let data = {
+					page: ref.page,
+					length: ref.length
+				};
+				ref.ajax(ref.url.searchMessageByPage, 'POST', data, function(resp) {
+					let result = resp.data.result;
+					if (result == null || result.length == 0) {
+						ref.isLastPage = true;
+						ref.page = ref.page - 1;
+						uni.showToast({
+							icon: 'none',
+							title: '已经到底了'
+						});
+					} 
+					else {
+						if (ref.page == 1) {
+							ref.list = [];
+						}
+						ref.list = ref.list.concat(result);
+						if (ref.page > 1) {
+							uni.showToast({
+								icon: 'none',
+								title: '又加载了' + result.length + '条消息'
+							});
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
