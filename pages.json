@@ -82,14 +82,14 @@
 			"path" : "pages/message_list/message_list",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "消息列表"
 			}
 		},
 		{
 			"path" : "pages/message/message",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "消息详情"
 			}
 		}
 	],
