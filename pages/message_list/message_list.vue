@@ -1,6 +1,15 @@
 <template>
-	<view>
-		
+	<view class="page">
+		<uni-list>
+			<uni-list-chat v-for="one in list" :title="one.senderName" 
+			  :avatar="one.senderPhoto" :note="one.msg" badge-positon="left" 
+			  :badge-text="one.readFlag ? '' : 'dot'" :key="one.id" link="navigateTo" 
+			  :to="'../message/message?id=' + one.id + '&readFlag=' + one.readFlag + '&refId=' + one.refId">
+				<view class="chat-custom-right">
+					<text class="chat-custom-text">{{ one.sendTime }}</text>
+				</view>
+			</uni-list-chat>
+		</uni-list>
 	</view>
 </template>
 
