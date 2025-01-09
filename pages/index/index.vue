@@ -17,7 +17,7 @@
 				<image mode="widthFix" src="https://static-1334177744.cos.na-ashburn.myqcloud.com/img%2Fbanner%2Fswiper-5.jpg"></image>
 			</swiper-item>
 		</swiper>
-		<view class="notify-container">
+		<view class="notify-container" @tap="toPage('消息提醒', '/pages/message_list/message_list')">
 			<view class="notify-title">
 				<image src="../../static/icon-1.png" mode="widthFix" class="notify-icon"></image>
 				消息提醒
