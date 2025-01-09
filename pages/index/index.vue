@@ -81,6 +81,9 @@
 				</view>
 			</view>
 		</view>
+		<uni-popup ref="popupMsg" type="top">
+			<uni-popup-message type="success" :message="'接收到' + lastRows + '条消息'" :duration="2000"/>
+		</uni-popup>
 	</view>
 </template>
 
@@ -102,7 +105,30 @@
 			}
 		},
 		onLoad() {
-
+			// 监听事件
+			let that = this;
+			uni.$on('showMessage', function() {
+				that.$refs.popupMsg.open();
+			});
+		},
+		onUnload:function(){
+			uni.$off("showMessage")
+		},
+		onShow:function(){
+			let that = this
+			that.timer = setInterval(function() {
+				that.ajax(that.url.refreshMessage,"GET",null,function(resp){
+					that.unreadRows=resp.data.unreadRows
+					that.lastRows=resp.data.lastRows
+					if (that.lastRows > 0) {
+						uni.$emit("showMessage")
+					}
+				})
+			}, 5000)
+		},
+		onHide:function(){
+			let that=this
+			clearInterval(that.timer)
 		},
 		methods: {
 			toPage: function(name, url) {
