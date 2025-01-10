@@ -33,7 +33,7 @@
 			"path" : "pages/meeting_list/meeting_list",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "会议列表"
 			}
 		},
 		{
