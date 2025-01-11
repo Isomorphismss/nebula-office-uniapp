@@ -103,7 +103,7 @@
 			"path" : "pages/members/members",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "选择成员"
 			}
 		}
 	],
