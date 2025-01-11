@@ -87,7 +87,14 @@
 				typeIndex: 0,
 				place: '',
 				desc: '会议内容',
-				members: [],
+				members: [
+					{id:1, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
+					{id:2, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
+					{id:3, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
+					{id:4, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
+					{id:5, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
+					{id:6, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
+				],
 				instanceId: null
 			}
 		},
