@@ -91,6 +91,13 @@
 			{
 				"navigationBarTitleText" : "消息详情"
 			}
+		},
+		{
+			"path" : "pages/meeting/meeting",
+			"style" : 
+			{
+				"navigationBarTitleText" : "会议详情"
+			}
 		}
 	],
 	"globalStyle": {
