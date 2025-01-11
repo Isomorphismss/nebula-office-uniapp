@@ -47,28 +47,76 @@
 	export default {
 		data() {
 			return {
-				page: 1,
+				page: 0,
 				length: 20,
-				list: [
-					{
-						date: '2021年02月08日',
-						list: [
-							{ id: 1, date: '2021/02/08', start: '08:30', end: '10:30', type: '线上会议', name: '张爽',place:"网络会议室", status:"未开始",title:'年终大会', desc:"年终总结大会" },
-							{ id: 2, date: '2021/02/08', start: '08:30', end: '10:30', type: '线上会议', name: '张爽',place:"网络会议室", status:"未开始",title:'年终大会', desc:"年终总结大会" }
-						]
-					},
-					{
-						date: '2021年02月09日',
-						list: [
-							{ id: 3, date: '2021/02/09', start: '08:30', end: '10:30', type: '线上会议', name: '张爽',place:"网络会议室", status:"未开始",title:'年终大会', desc:"年终总结大会" }
-						]
-					}
-				],
+				list: [],
 				isLastPage: false
 			}
 		},
+		onShow: function() {
+			let that = this;
+			that.page = 1;
+			that.isLastPage = false;
+			that.list = [];
+			that.loadMeetingList(that);
+		},
+		onReachBottom: function() {
+			let that = this;
+			if (that.isLastPage) {
+				return;
+			}
+			that.page = that.page + 1;
+			that.loadMeetingList(that);
+		},
 		methods: {
+			loadMeetingList: function(ref) {
+				let data = {
+					page: ref.page,
+					length: ref.length
+				};
+				ref.ajax(ref.url.searchMyMeetingListByPage, 'POST', data, function(resp) {
+					let result = resp.data.result;
+					if (result == null || result.length == 0) {
+						ref.isLastPage = true;
+						ref.page = ref.page - 1;
+						if (ref.page > 1) {
+							uni.showToast({
+								icon: 'none',
+								title: '已经到底了'
+							});
+						}
+					} else {
+						for (let one of result) {
+							for (let meeting of one.list) {
+								if (meeting.type == 1) {
+									meeting.type = '线上会议';
+								} else if (meeting.type == 2) {
+									meeting.type = '线下会议';
+								}
 			
+								if (meeting.status == 3) {
+									meeting.status = '未开始';
+								} else if (meeting.status == 4) {
+									meeting.status = '进行中';
+								} else if (meeting.status == 5) {
+									meeting.status = '已结束';
+								}
+							}
+							if (ref.list.length > 0) {
+								let last = ref.list[ref.list.length - 1];
+			
+								if (last.date == one.date) {
+									last.list = last.list.concat(one.list);
+								} else {
+									ref.list.push(one);
+								}
+							} else {
+								ref.list.push(one);
+							}
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
