@@ -40,8 +40,25 @@
 				members: []
 			}
 		},
+		onShow: function() {
+			this.loadData(this);
+		},
 		methods: {
-			
+			loadData: function(ref) {
+				ref.ajax(ref.url.searchUserGroupByDept, 'POST', { keyword: ref.keyword }, function(resp) {
+					let result = resp.data.result;
+					ref.list = result;
+					for (let dept of ref.list) {
+						for (let member of dept.members) {
+							if (ref.members.indexOf(member.userId + '') != -1) {
+								member.checked = true;
+							} else {
+								member.checked = false;
+							}
+						}
+					}
+				});
+			},
 		}
 	}
 </script>
