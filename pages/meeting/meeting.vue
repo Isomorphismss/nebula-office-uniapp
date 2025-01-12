@@ -32,12 +32,12 @@
 					<picker v-if="canEdit" :value="typeIndex" :range="typeArray" @change="typeChange">{{ typeArray[typeIndex] }}</picker>
 					<text v-if="!canEdit" class="value">{{ typeArray[typeIndex] }}</text>
 				</view>
-				<view class="item" v-if="typeArray[typeIndex] == '线下会议'">
+				<view class="item" v-if="typeArray[typeIndex] == '线下会议'" @tap="editPlace">
 					<view class="key">地点</view>
 					<view class="value">{{ place }}</view>
 				</view>
 			</view>
-			<view>
+			<view @tap="editDesc">
 				<text class="desc">{{ desc }}</text>
 			</view>
 		</view>
@@ -56,10 +56,10 @@
 		</view>
 		<button class="btn">保存</button>
 		<uni-popup ref="popupPlace" type="dialog">
-			<uni-popup-dialog mode="input" title="编辑文字内容" :value="place" placeholder="输入会议地点"/>
+			<uni-popup-dialog mode="input" title="编辑文字内容" :value="place" placeholder="输入会议地点" @confirm="finishPlace"/>
 		</uni-popup>
 		<uni-popup ref="popupDesc" type="dialog">
-			<uni-popup-dialog mode="input" title="编辑文字内容" :value="desc" placeholder="输入会议内容"/>
+			<uni-popup-dialog mode="input" title="编辑文字内容" :value="desc" placeholder="输入会议内容" @confirm="finishDesc"/>
 		</uni-popup>
 	</view>
 </template>
@@ -146,6 +146,40 @@
 			},
 			typeChange: function(e) {
 				this.typeIndex = e.detail.value;
+			},
+			editPlace: function() {
+				if (!this.canEdit) {
+					return;
+				}
+				this.$refs.popupPlace.open();
+			},
+			finishPlace: function(done, value) {
+				if (value != null && value != '') {
+					this.place = value;
+					done();
+				} else {
+					uni.showToast({
+						icon: 'none',
+						title: '地点不能为空'
+					});
+				}
+			},
+			editDesc: function() {
+				if (!this.canEdit) {
+					return;
+				}
+				this.$refs.popupDesc.open();
+			},
+			finishDesc: function(done, value) {
+				if (value != null && value != '') {
+					this.desc = value;
+					done();
+				} else {
+					uni.showToast({
+						icon: 'none',
+						title: '内容不能为空'
+					});
+				}
 			},
 		}
 	}
