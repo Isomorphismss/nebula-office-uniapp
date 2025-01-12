@@ -27,7 +27,8 @@ Vue.prototype.url={
 	updateUnreadMessage: baseUrl + "/message/updateUnreadMessage",
 	deleteMessageRefById: baseUrl + "/message/deleteMessageRefById",
 	searchMyMeetingListByPage: baseUrl + "/meeting/searchMyMeetingListByPage",
-	searchUserGroupByDept:baseUrl+"/user/searchUserGroupByDept",
+	searchUserGroupByDept:baseUrl + "/user/searchUserGroupByDept",
+	searchMembers:baseUrl + "/user/searchMembers",
 }
 
 Vue.prototype.ajax=function(url,method,data,fun){
