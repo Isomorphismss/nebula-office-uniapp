@@ -112,6 +112,10 @@
 				});
 			}
 		},
+		onLoad: function(options) {
+			this.id = options.id;
+			this.opt = options.opt;
+		},
 		methods: {
 			toMembersPage: function() {
 				let array = [];
