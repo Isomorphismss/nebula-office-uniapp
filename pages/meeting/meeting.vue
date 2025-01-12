@@ -134,7 +134,19 @@
 				uni.navigateTo({
 					url: '../members/members?members=' + array.join(',')
 				});
-			}
+			},
+			dateChange: function(e) {
+				this.date = e.detail.value;
+			},
+			startChange: function(e) {
+				this.start = e.detail.value;
+			},
+			endChange: function(e) {
+				this.end = e.detail.value;
+			},
+			typeChange: function(e) {
+				this.typeIndex = e.detail.value;
+			},
 		}
 	}
 </script>
