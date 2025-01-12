@@ -1,5 +1,5 @@
 <template>
-	<view class="page">
+	<view class="page" v-if="checkPermission(['ROOT', 'MEETING:INSERT', 'MEETING:UPDATE'])">
 		<view class="header">
 			<input type="text" class="title" v-model="title" placeholder="输入会议标题" placeholder-class="title-placeholder" />
 			<image src="../../static/icon-18.png" mode="widthFix" class="edit-icon"></image>
@@ -8,28 +8,28 @@
 			<view class="list">
 				<view class="item">
 					<view class="key">日期</view>
-					<picker v-if="canEdit" mode="date" :value="date">
+					<picker v-if="canEdit" mode="date" :value="date" @change="dateChange">
 						<view class="uni-input">{{ date }}</view>
 					</picker>
 					<text v-if="!canEdit" class="value">{{ date }}</text>
 				</view>
 				<view class="item">
 					<view class="key">开始时间</view>
-					<picker v-if="canEdit" mode="time" :value="start">
+					<picker v-if="canEdit" mode="time" :value="start" @change="startChange">
 						<view class="uni-input">{{ start }}</view>
 					</picker>
 					<text v-if="!canEdit" class="value">{{ start }}</text>
 				</view>
 				<view class="item">
 					<view class="key">结束时间</view>
-					<picker v-if="canEdit" mode="time" :value="end">
+					<picker v-if="canEdit" mode="time" :value="end" @change="endChange">
 						<view class="uni-input">{{ end }}</view>
 					</picker>
 					<text v-if="!canEdit" class="value">{{ end }}</text>
 				</view>
 				<view class="item">
 					<view class="key">会议类型</view>
-					<picker v-if="canEdit" :value="typeIndex" :range="typeArray">{{ typeArray[typeIndex] }}</picker>
+					<picker v-if="canEdit" :value="typeIndex" :range="typeArray" @change="typeChange">{{ typeArray[typeIndex] }}</picker>
 					<text v-if="!canEdit" class="value">{{ typeArray[typeIndex] }}</text>
 				</view>
 				<view class="item" v-if="typeArray[typeIndex] == '线下会议'">
