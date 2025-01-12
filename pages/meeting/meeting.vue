@@ -49,7 +49,8 @@
 					<text class="name">{{ one.name }}</text>
 				</view>
 				<view class="add">
-					<image src="../../static/icon-19.png" mode="widthFix" class="add-btn"/>
+					<image src="../../static/icon-19.png" mode="widthFix"
+					 class="add-btn" @tap="toMembersPage()"/>
 				</view>
 			</view>
 		</view>
@@ -87,19 +88,20 @@
 				typeIndex: 0,
 				place: '',
 				desc: '会议内容',
-				members: [
-					{id:1, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
-					{id:2, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
-					{id:3, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
-					{id:4, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
-					{id:5, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
-					{id:6, name:"张强", photo:"https://images.zsxq.com/FmX9p9uake_IB-NdPEwFYgaw0mMn?e=1740758399&token=kIxbL07-8jAj8w1n4s9zv64FuZZNEATmlU_Vm6zD:csBmcu876rvNIMuX0D7nzs5FkQM="},
-				],
+				members: [],
 				instanceId: null
 			}
 		},
 		methods: {
-			
+			toMembersPage: function() {
+				let array = [];
+				for (let one of this.members) {
+					array.push(one.id);
+				}
+				uni.navigateTo({
+					url: '../members/members?members=' + array.join(',')
+				});
+			}
 		}
 	}
 </script>
