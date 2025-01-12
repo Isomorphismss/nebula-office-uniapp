@@ -13,8 +13,8 @@ app.$mount()
 let baseUrl = "http://Redacted/emos-wx-api"
 
 Vue.prototype.url={
-	register:baseUrl+"/user/register",
-	login:baseUrl+"/user/login",
+	register:baseUrl + "/user/register",
+	login:baseUrl + "/user/login",
 	checkin: baseUrl + "/checkin/checkin",
 	createFaceModel: baseUrl + "/checkin/createFaceModel",
 	validCanCheckIn: baseUrl + "/checkin/validCanCheckIn",
