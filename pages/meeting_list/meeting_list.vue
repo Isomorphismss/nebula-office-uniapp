@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<image src="../../static/logo-3.jpg" mode="widthFix" class="logo"></image>
-		<view class="add">
+		<view class="add" v-if="checkPermission(['ROOT', 'MEETING:INSERT'])" @tap="toMeetingPage(null, 'insert')">
 			<image src="../../static/icon-17.png" mode="widthFix" class="icon"></image>
 			<text>创建会议</text>
 		</view>
