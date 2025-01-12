@@ -98,7 +98,16 @@
 			let currPage = pages[pages.length - 1]; // 当前页
 			//判断是不是从会议列表页面进入的
 			if (!currPage.hasOwnProperty('finishMembers') || !currPage.finishMembers) {
-				
+				if (that.opt == 'insert') {
+					let now = new Date();
+					//往后偏移30分钟
+					now.setTime(now.getTime() + 30 * 60 * 1000);
+					that.date = now.format("yyyy-MM-dd");
+					that.start = now.format("hh:mm");
+					//结束时间，往后偏移1个小时
+					now.setTime(now.getTime() + 1000 * 60 * 60);
+					that.end = now.format("hh:mm");
+				}
 			} else {
 				let members = []
 				//把数组中的字符串转换成数字
