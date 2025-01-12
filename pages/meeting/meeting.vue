@@ -92,6 +92,26 @@
 				instanceId: null
 			}
 		},
+		onShow: function() {
+			let that = this;
+			let pages = getCurrentPages();
+			let currPage = pages[pages.length - 1]; // 当前页
+			//判断是不是从会议列表页面进入的
+			if (!currPage.hasOwnProperty('finishMembers') || !currPage.finishMembers) {
+				
+			} else {
+				let members = []
+				//把数组中的字符串转换成数字
+				for(let one of currPage.members){
+					members.push(Number(one))
+				}
+				// 查询数据
+				that.ajax(that.url.searchMembers, 'POST', { members: JSON.stringify(members) }, function(resp) {
+					let result = resp.data.result;
+					that.members = result;
+				});
+			}
+		},
 		methods: {
 			toMembersPage: function() {
 				let array = [];
