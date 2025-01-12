@@ -116,7 +116,12 @@
 						}
 					}
 				});
-			}
+			},
+			toMeetingPage: function(id, opt) {
+				uni.navigateTo({
+					url: '../meeting/meeting?id=' + id + '&opt=' + opt
+				});
+			},
 		}
 	}
 </script>
