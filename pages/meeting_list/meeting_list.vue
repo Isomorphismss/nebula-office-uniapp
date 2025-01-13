@@ -7,7 +7,8 @@
 		</view>
 		<view v-for="one in list" :key="one.date">
 			<view class="list-title">{{ one.date }}</view>
-			<view class="item" v-for="meeting in one.list" :key="meeting.id">
+			<view class="item" v-for="meeting in one.list" :key="meeting.id"
+			@longpress="deleteById(meeting.id, meeting.date, meeting.start)">
 				<view class="header">
 					<view class="left">
 						<image v-if="meeting.type == '线上会议'" src="../../static/icon-11.png" mode="widthFix" class="icon"></image>
@@ -123,6 +124,47 @@
 					url: '../meeting/meeting?id=' + id + '&opt=' + opt
 				});
 			},
+			deleteById: function(id, date, start) {
+				let now = new Date();
+				let meetingDate = new Date(date + ' ' + start + ':00');
+				if (now.getTime() >= meetingDate.getTime() - 20 * 60 * 1000) {
+					uni.showToast({
+						title: '该会议无法删除',
+						icon: 'none'
+					});
+					return;
+				}
+				let that = this;
+				uni.vibrateShort({});
+				uni.showModal({
+					title: '提示信息',
+					content: '是否删除这个会议？',
+					success: function(resp) {
+						if (resp.confirm) {
+							let data = {
+								id: id
+							};
+							that.ajax(that.url.deleteMeetingById, 'POST', data, function(resp) {
+								uni.showToast({
+									icon: 'success',
+									title: '删除成功',
+									complete: function() {
+										setTimeout(function() {
+											that.page = 1;
+											that.isLastPage = false;
+											uni.pageScrollTo({
+												scrollTop: '0'
+											});
+											that.list=[]
+											that.loadMeetingList(that);
+										}, 2000);
+									}
+								});
+							});
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
