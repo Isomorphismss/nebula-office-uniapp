@@ -44,7 +44,7 @@
 		<view class="members">
 			<view class="number">参会者（{{ members.length }}人）</view>
 			<view class="member">
-				<view class="user" v-for="one in members" :key="one.id">
+				<view class="user" v-for="one in members" :key="one.id" @longpress="deleteMember(one.id)">
 					<image :src="one.photo" mode="widthFix" class="photo"></image>
 					<text class="name">{{ one.name }}</text>
 				</view>
@@ -247,6 +247,27 @@
 					});
 				});
 			},
+			deleteMember: function(id) {
+				let that = this;
+				uni.vibrateShort({});
+				uni.showModal({
+					title: '提示信息',
+					content: '删除该名参会人员？',
+					success: function(resp) {
+						if (resp.confirm) {
+							let position;
+							for (let i = 0; i < that.members.length; i++) {
+								let one = that.members[i];
+								if (one.id == id) {
+									position = i;
+									break;
+								}
+							}
+							that.members.splice(position, 1);
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
