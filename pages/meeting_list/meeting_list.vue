@@ -15,7 +15,8 @@
 						<text>{{ meeting.type }}</text>
 						<text :class="meeting.status == '未开始' ? 'blue' : 'red'">（{{ meeting.status }}）</text>
 					</view>
-					<view class="right">
+					<view class="right" @tap="toMeetingPage(meeting.id, 'edit')"
+					v-if="checkPermission(['ROOT', 'MEETING:UPDATE']) && meeting.status == '未开始'">
 						<text>编辑</text>
 					</view>
 				</view>

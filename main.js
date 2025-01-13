@@ -29,7 +29,8 @@ Vue.prototype.url={
 	searchMyMeetingListByPage: baseUrl + "/meeting/searchMyMeetingListByPage",
 	searchUserGroupByDept:baseUrl + "/user/searchUserGroupByDept",
 	searchMembers:baseUrl + "/user/searchMembers",
-	insertMeeting: baseUrl + "/meeting/insertMeeting"
+	insertMeeting: baseUrl + "/meeting/insertMeeting",
+	searchMeetingById:baseUrl+"/meeting/searchMeetingById"
 }
 
 Vue.prototype.ajax=function(url,method,data,fun){

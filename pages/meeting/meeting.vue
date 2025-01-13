@@ -107,6 +107,24 @@
 					//结束时间，往后偏移1个小时
 					now.setTime(now.getTime() + 1000 * 60 * 60);
 					that.end = now.format("hh:mm");
+				} else if (that.opt == 'edit') {
+					//获取数据
+					that.ajax(that.url.searchMeetingById, 'POST', { id: that.id }, function(resp) {
+						let result = resp.data.result;
+						that.uuid = result.uuid;
+						that.title = result.title;
+						that.date = result.date;
+						that.start = result.start;
+						that.end = result.end;
+						that.typeIndex = result.type - 1;
+						that.place = result.place;
+						let desc = result.desc;
+						if (desc != null && desc != '') {
+							that.desc = desc;
+						}
+						that.members = result.members;
+						that.instanceId = result.instanceId;
+					});
 				}
 			} else {
 				let members = []
