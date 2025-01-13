@@ -54,7 +54,7 @@
 				</view>
 			</view>
 		</view>
-		<button class="btn">保存</button>
+		<button class="btn" @tap="save()">保存</button>
 		<uni-popup ref="popupPlace" type="dialog">
 			<uni-popup-dialog mode="input" title="编辑文字内容" :value="place" placeholder="输入会议地点" @confirm="finishPlace"/>
 		</uni-popup>
@@ -180,6 +180,54 @@
 						title: '内容不能为空'
 					});
 				}
+			},
+			save: function() {
+				let that = this;
+				let array = [];
+				for (let one of that.members) {
+					array.push(one.id);
+				}
+				//验证数据
+				if (
+					that.checkBlank(that.title, '会议题目') ||
+					that.checkValidStartAndEnd(that.start, that.end) ||
+					(that.typeIndex == "1" && that.checkBlank(that.place, '会议地点')) ||
+					that.checkBlank(that.desc, '会议内容') ||
+					array.length == 0
+				) {
+					return;
+				}
+				let data = {
+					title: that.title,
+					date: that.date,
+					start: that.start,
+					end: that.end,
+					type: Number(that.typeIndex) + 1,
+					members: JSON.stringify(array),
+					desc: that.desc,
+					id: that.id,
+					instanceId: that.instanceId
+				};
+				if (that.typeIndex == '1') {
+					data.place = that.place;
+				}
+				let url;
+				if (that.opt == 'insert') {
+					url = this.url.insertMeeting;
+				} else if (that.opt == 'edit') {
+					url = this.url.updateMeetingInfo;
+				}
+				that.ajax(url, 'POST', data, function(resp) {
+					uni.showToast({
+						icon: 'success',
+						title: '保存成功',
+						complete: function() {
+							setTimeout(function() {
+								uni.navigateBack({});
+							}, 2000);
+						}
+					});
+				});
 			},
 		}
 	}
