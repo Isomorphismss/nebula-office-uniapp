@@ -110,7 +110,7 @@
 			"path" : "pages/approval_list/approval_list",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "在线审批"
 			}
 		}
 	],
