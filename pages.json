@@ -105,6 +105,13 @@
 			{
 				"navigationBarTitleText" : "选择成员"
 			}
+		},
+		{
+			"path" : "pages/approval_list/approval_list",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"globalStyle": {
