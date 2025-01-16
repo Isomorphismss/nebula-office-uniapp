@@ -11,6 +11,8 @@ const app = new Vue({
 app.$mount()
 
 let baseUrl = "http://Redacted/emos-wx-api"
+let workflow = "http://Redacted/emos-workflow"
+Vue.prototype.code = "Redacted"
 
 Vue.prototype.url={
 	register:baseUrl + "/user/register",
