@@ -16,7 +16,7 @@
 					<view class="attr">时长：{{ one.hours >= 1 ? one.hours : '小于1' }}小时</view>
 					<view class="status">状态：待审批</view>
 				</view>
-				<view class="right"><button class="btn">审批</button></view>
+				<view class="right"><button class="btn" @tap="toPage(one.processType,one.id,one.taskId)">审批</button></view>
 			</view>
 		</view>
 	</view>
@@ -102,6 +102,15 @@
 					} else {
 						ref.list = result;
 					}
+				})
+			},
+			toPage: function(processType, id, taskId) {
+				let url = '../approval/approval?processType=' + processType + '&id=' + id;
+				if (taskId != null && taskId != "") {
+					url += '&taskId=' + taskId;
+				}
+				uni.navigateTo({
+					url: url
 				});
 			}
 		}
