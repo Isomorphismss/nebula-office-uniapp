@@ -34,7 +34,8 @@ Vue.prototype.url={
 	insertMeeting: baseUrl + "/meeting/insertMeeting",
 	searchMeetingById:baseUrl+"/meeting/searchMeetingById",
 	updateMeetingInfo: baseUrl + "/meeting/updateMeetingInfo",
-	deleteMeetingById:baseUrl+"/meeting/deleteMeetingById"
+	deleteMeetingById:baseUrl+"/meeting/deleteMeetingById",
+	searchUserTaskListByPage:workflow+"/workflow/searchUserTaskListByPage"
 }
 
 Vue.prototype.ajax=function(url,method,data,fun){
