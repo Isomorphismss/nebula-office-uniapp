@@ -112,6 +112,13 @@
 			{
 				"navigationBarTitleText" : "在线审批"
 			}
+		},
+		{
+			"path" : "pages/approval/approval",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"globalStyle": {
