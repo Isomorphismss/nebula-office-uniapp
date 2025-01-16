@@ -95,7 +95,35 @@
 			}
 		},
 		methods: {
-			
+			approvalMeeting: function(approval) {
+				let that = this;
+				let data={
+					taskId: that.taskId,
+					approval: approval,
+					code:that.code
+				}
+				uni.showModal({
+					title: '提示信息',
+					content: '你' + approval + '这条申请？',
+					success: function(resp) {
+						if (resp.confirm) {
+							that.ajax(
+								that.url.approvalMeeting, 'POST', data, function(resp) {
+									uni.showToast({
+										title: '处理完成',
+										icon: 'success',
+										complete: function() {
+											setTimeout(function() {
+												uni.navigateBack({});
+											}, 2000);
+										}
+									});
+								}
+							);
+						}
+					}
+				});
+			}
 		}
 	}
 </script>
