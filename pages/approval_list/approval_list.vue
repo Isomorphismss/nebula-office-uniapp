@@ -89,8 +89,14 @@
 			this.loadData(this);
 		},
 		methods: {
-			onClickItem: function() {
-				
+			onClickItem: function(e) {
+				if (this.current != e.currentIndex) {
+					this.current = e.currentIndex;
+					this.page = 1
+					this.list = []
+					this.isLastPage=false
+					this.loadData(this)
+				}
 			},
 			loadData: function(ref) {
 				//查询未审批的任务
@@ -132,7 +138,17 @@
 						}
 					}
 					if (ref.current == 1 && list.length > 0) {
-						//TODO 查询发起人与审批人的信息
+						ref.ajax(ref.url.selectUserPhotoAndName, 'POST', { ids: JSON.stringify(list) }, function(resp) {
+							let nameAndPhoto = resp.data.result;
+							for(let one of result){
+								if(one.hasOwnProperty("lastUser")){
+									let temp=nameAndPhoto[0]
+									one.lastUserName=temp.name
+									one.lastUserPhoto=temp.photo
+								}
+							}
+							ref.list = result;
+						});
 					} else {
 						ref.list = result;
 					}

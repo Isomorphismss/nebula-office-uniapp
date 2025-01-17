@@ -67,7 +67,7 @@
 					<image src="../../static/nav-9.png" mode="widthFix" class="icon"></image>
 					<text class="name">公告通知</text>
 				</view>
-				<view class="nav">
+				<view class="nav" @tap="toPage('在线审批', '../approval_list/approval_list')">
 					<image src="../../static/nav-10.png" mode="widthFix" class="icon"></image>
 					<text class="name">在线审批</text>
 				</view>
