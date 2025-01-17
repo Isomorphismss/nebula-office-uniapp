@@ -37,7 +37,8 @@ Vue.prototype.url={
 	deleteMeetingById:baseUrl+"/meeting/deleteMeetingById",
 	searchUserTaskListByPage:workflow+"/workflow/searchUserTaskListByPage",
 	approvalMeeting: workflow + "/workflow/approvalMeeting",
-	selectUserPhotoAndName:baseUrl+"/user/selectUserPhotoAndName"
+	selectUserPhotoAndName:baseUrl+"/user/selectUserPhotoAndName",
+	genUserSig: baseUrl + "/user/genUserSig"
 }
 
 Vue.prototype.ajax=function(url,method,data,fun){
@@ -190,4 +191,10 @@ Vue.prototype.checkValidStartAndEnd = function(start, end) {
 		return true
 	}
 	return false
+}
+
+Vue.prototype.tencent = {
+	trtc: {
+		appid: "000000"
+	}
 }
