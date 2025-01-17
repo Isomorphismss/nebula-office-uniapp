@@ -139,10 +139,20 @@
 		},
 		methods: {
 			toPage: function(name, url) {
-				//TODO 验证用户的权限
-				uni.navigateTo({
-					url: url
-				});
+				let flag = false;
+				if (name == '在线审批') {
+					flag = !this.checkPermission(['WORKFLOW:APPROVAL']);
+				}
+				if (flag) {
+					uni.showToast({
+						icon: 'none',
+						title: '您不具备相关权限'
+					});
+				} else {
+					uni.navigateTo({
+						url: url
+					});
+				}
 			}
 		}
 	}

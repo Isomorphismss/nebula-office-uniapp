@@ -38,7 +38,8 @@
 						</view>
 					</view>
 					<view class="desc">{{ meeting.desc }}</view>
-					<button class="btn" v-if="meeting.type == '线上会议'">进入</button>
+					<button class="btn" v-if="meeting.type == '线上会议'"
+					@tap="enter(meeting.id, meeting.uuid, meeting.date, meeting.start)">进入</button>
 				</view>
 			</view>
 		</view>
@@ -164,6 +165,27 @@
 						}
 					}
 				});
+			},
+			enter: function(id, uuid, date, start) {
+				date=date.replace("年","/").replace("月","/").replace("日","")
+				
+				let begin = new Date(date + ' ' + start + ':00');
+				let now = new Date();
+				//会议开始前10分钟可以进入
+				if (now.getTime() >= begin.getTime() - 10 * 60 * 1000) {
+					//查询房间号
+					this.ajax(this.url.searchRoomIdByUUID, 'POST', { uuid: uuid }, function(resp) {
+						let roomId = resp.data.result;
+						uni.navigateTo({
+							url: '../video_meeting/video_meeting?id=' + id + '&roomId=' + roomId
+						});
+					});
+				} else {
+					uni.showToast({
+						icon: 'none',
+						title: '会议开始前10分钟才能进入'
+					});
+				}
 			}
 		}
 	}

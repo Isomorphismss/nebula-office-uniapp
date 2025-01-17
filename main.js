@@ -38,7 +38,8 @@ Vue.prototype.url={
 	searchUserTaskListByPage:workflow+"/workflow/searchUserTaskListByPage",
 	approvalMeeting: workflow + "/workflow/approvalMeeting",
 	selectUserPhotoAndName:baseUrl+"/user/selectUserPhotoAndName",
-	genUserSig: baseUrl + "/user/genUserSig"
+	genUserSig: baseUrl + "/user/genUserSig",
+	searchRoomIdByUUID: baseUrl + "/meeting/searchRoomIdByUUID"
 }
 
 Vue.prototype.ajax=function(url,method,data,fun){

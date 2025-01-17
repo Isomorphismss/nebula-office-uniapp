@@ -119,6 +119,17 @@
 			{
 				"navigationBarTitleText" : "审批"
 			}
+		},
+		{
+			"path" : "pages/video_meeting/video_meeting",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh": false,
+				"usingComponents": {
+					"trtc-room": "/wxcomponents/trtc-room/trtc-room"
+				}
+			}
 		}
 	],
 	"globalStyle": {
