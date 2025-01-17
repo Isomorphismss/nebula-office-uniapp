@@ -19,6 +19,40 @@
 				<view class="right"><button class="btn" @tap="toPage(one.processType,one.id,one.taskId)">审批</button></view>
 			</view>
 		</view>
+		<view v-if="current == 1" class="list">
+			<view class="item" v-for="one in list" :key="one.id" @tap="toPage(one.processType, one.id, null)">
+				<view class="left">
+					<image :src="one.photo" mode="widthFix" class="photo"></image>
+					<view class="name">{{ one.name }}</view>
+					<view class="desc">（发起）</view>
+				</view>
+				<view class="center">
+					<view class="title">{{ one.sameDept ? '本部门' : '跨部门' }}{{ one.type }}申请</view>
+					<view class="attr">日期：{{ one.date }}</view>
+					<view class="attr">时长：{{ one.hours >= 1 ? one.hours : '小于1' }}小时</view>
+					<view class="attr">
+						本人审批：
+						<text :class="{ green: one.result_1 == '同意', red: one.result_1 == '不同意' }">{{ one.result_1 }}</text>
+					</view>
+					<view class="attr">
+						最终结果：
+						<text class="result" v-if="one.result_2 == null">等待中</text>
+						<text v-if="one.result_2 != null" :class="{ green: one.result_2 == '同意', red: one.result_2 == '不同意' }">{{ one.result_2 }}</text>
+					</view>
+				</view>
+				<view class="right">
+					<block v-if="one.processStatus == '已结束'">
+						<image :src="one.lastUserPhoto" mode="widthFix" class="icon"></image>
+						<view class="name">{{ one.lastUserName }}</view>
+						<view class="desc">（终审）</view>
+					</block>
+					<block v-if="one.processStatus == '未结束'">
+						<image src="../../static/icon-20.png" mode="widthFix" class="icon"></image>
+						<view class="desc">审批进行中</view>
+					</block>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
