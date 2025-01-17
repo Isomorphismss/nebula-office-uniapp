@@ -81,6 +81,26 @@
 				</view>
 			</view>
 		</view>
+		<view class="calendar-container">
+			<uni-calendar :insert="true" :lunar="true" :selected="calendar" @monthSwitch="changeMonth" />
+		</view>
+		<view class="meeting-container" v-for="one in meetingList" :key="one.id">
+			<view class="meeting">
+				<view class="row">
+					<text class="title">{{ one.title }}</text>
+					<text class="hours">时长：{{ one.hour == 0 ? 1 : one.hour }}小时</text>
+				</view>
+				<view class="row">
+					<image src="../../static/icon-3.png" mode="widthFix" class="icon"></image>
+					<text class="desc" space="emsp">日期：{{ one.date }} {{ one.start }}</text>
+				</view>
+				<view class="row">
+					<image src="../../static/icon-4.png" mode="widthFix" class="icon"></image>
+					<text class="desc">地点：{{ one.type == '线上会议' ? one.type : one.place }}</text>
+				</view>
+				<image :src="one.photo" class="photo"></image>
+			</view>
+		</view>
 		<uni-popup ref="popupMsg" type="top">
 			<uni-popup-message type="success" :message="'接收到' + lastRows + '条消息'" :duration="2000"/>
 		</uni-popup>
@@ -91,17 +111,34 @@
 	import uniPopup from '@/components/uni-popup/uni-popup.vue';
 	import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue';
 	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue';
+	import uniCalendar from '@/components/uni-calendar/uni-calendar.vue';
 	export default {
 		components: {
 			uniPopup,
 			uniPopupMessage,
-			uniPopupDialog
+			uniPopupDialog,
+			uniCalendar
 		}, 
 		data() {
 			return {
 				unreadRows: 0,
 				lastRows: 0,
-				timer: null
+				timer: null,
+				calendar: [
+					{ date: '2021-02-15', info: '会议'},
+					{ date: '2021-02-16', info: '会议'},
+					{ date: '2021-02-17', info: '会议'}
+				],
+				meetingPage: 1,
+				meetingLength: 20,
+				meetingList: [
+					{id:1,title:"测试会议1",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"},
+					{id:2,title:"测试会议2",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"},
+					{id:3,title:"测试会议3",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"},
+					{id:4,title:"测试会议4",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"},
+					{id:5,title:"测试会议5",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"}
+				],
+				isMeetingLastPage: false
 			}
 		},
 		onLoad() {
