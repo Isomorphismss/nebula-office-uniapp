@@ -124,20 +124,10 @@
 				unreadRows: 0,
 				lastRows: 0,
 				timer: null,
-				calendar: [
-					{ date: '2021-02-15', info: '会议'},
-					{ date: '2021-02-16', info: '会议'},
-					{ date: '2021-02-17', info: '会议'}
-				],
+				calendar: [],
 				meetingPage: 1,
 				meetingLength: 20,
-				meetingList: [
-					{id:1,title:"测试会议1",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"},
-					{id:2,title:"测试会议2",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"},
-					{id:3,title:"测试会议3",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"},
-					{id:4,title:"测试会议4",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"},
-					{id:5,title:"测试会议5",hour:4,date:"2021/02/20",start:"08:50",type:"线上会议",photo:"https://static-1258386385.cos.ap-beijing.myqcloud.com/img/header/070920192833.jpg"}
-				],
+				meetingList: [],
 				isMeetingLastPage: false
 			}
 		},
@@ -169,10 +159,25 @@
 					}
 				})
 			}, 5000)
+			that.meetingPage=1
+			that.isMeetingLastPage=false
+			that.meetingList=[]
+			//加载分页会议列表
+			that.loadMeetingList(that);
+			//加载本月会议日期
+			let date = new Date();
+			that.loadMeetingInMonth(that, date.getFullYear(), date.getMonth() + 1);
 		},
 		onHide:function(){
 			let that=this
 			clearInterval(that.timer)
+		},
+		onReachBottom: function() {
+			if (this.isMeetingLastPage) {
+				return;
+			}
+			this.meetingPage = this.meetingPage + 1;
+			this.loadMeetingList(this);
 		},
 		methods: {
 			toPage: function(name, url) {
@@ -190,6 +195,59 @@
 						url: url
 					});
 				}
+			},
+			loadMeetingList: function(ref) {
+				let data = {
+					page: ref.meetingPage,
+					length: ref.meetingLength
+				};
+				ref.ajax(ref.url.searchMyMeetingListByPage, 'POST', data, function(resp) {
+					let result = resp.data.result;
+					if (result == null || result.length == 0) {
+						ref.isMeetingLastPage = true;
+						ref.meetingPage = ref.meetingPage - 1;
+						if (ref.meetingPage > 1) {
+							uni.showToast({
+								icon: 'none',
+								title: '已经到底了'
+							});
+						}
+					} else {
+						let list = [];
+						for (let one of result) {
+							for (let meeting of one.list) {
+								if (meeting.type == 1) {
+									meeting.type = '线上会议';
+								} else if (meeting.type == 2) {
+									meeting.type = '线下会议';
+								}
+			
+								if (meeting.status == 3) {
+									meeting.status = '未开始';
+								} else if (meeting.status == 4) {
+									meeting.status = '进行中';
+								}
+								list.push(meeting);
+							}
+						}
+						ref.meetingList = list;
+					}
+				});
+			},
+			loadMeetingInMonth: function(ref, year, month) {
+				let data = { year: year, month: month }
+				ref.ajax(ref.url.searchUserMeetingInMonth, 'POST', data, function(resp) {
+					ref.calendar = [];
+					for (let one of resp.data.result) {
+						ref.calendar.push({ date: one, info: '会议' });
+					}
+				});
+			},
+			changeMonth: function(e) {
+				let that = this;
+				let year = e.year;
+				let month = e.month;
+				that.loadMeetingInMonth(that,year,month)
 			}
 		}
 	}
