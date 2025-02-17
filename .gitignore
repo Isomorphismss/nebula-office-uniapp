@@ -17,3 +17,5 @@ Thumbs.db
 
 *.manifest
 *.bak
+
+manifest.json
