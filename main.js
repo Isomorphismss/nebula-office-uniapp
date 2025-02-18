@@ -10,37 +10,37 @@ const app = new Vue({
 })
 app.$mount()
 
-let baseUrl = "http://Redacted/emos-wx-api"
-let workflow = "http://Redacted/emos-workflow"
-Vue.prototype.code = "Redacted"
+const globalData = getApp().globalData;
 
-Vue.prototype.url={
-	register:baseUrl + "/user/register",
-	login:baseUrl + "/user/login",
-	checkin: baseUrl + "/checkin/checkin",
-	createFaceModel: baseUrl + "/checkin/createFaceModel",
-	validCanCheckIn: baseUrl + "/checkin/validCanCheckIn",
-	searchTodayCheckin: baseUrl + "/checkin/searchTodayCheckin",
-	searchUserSummary: baseUrl + "/user/searchUserSummary",
-	searchMonthCheckin: baseUrl + "/checkin/searchMonthCheckin",
-	refreshMessage: baseUrl + "/message/refreshMessage",
-	searchMessageByPage: baseUrl + "/message/searchMessageByPage",
-	searchMessageById: baseUrl + "/message/searchMessageById",
-	updateUnreadMessage: baseUrl + "/message/updateUnreadMessage",
-	deleteMessageRefById: baseUrl + "/message/deleteMessageRefById",
-	searchMyMeetingListByPage: baseUrl + "/meeting/searchMyMeetingListByPage",
-	searchUserGroupByDept:baseUrl + "/user/searchUserGroupByDept",
-	searchMembers:baseUrl + "/user/searchMembers",
-	insertMeeting: baseUrl + "/meeting/insertMeeting",
-	searchMeetingById:baseUrl+"/meeting/searchMeetingById",
-	updateMeetingInfo: baseUrl + "/meeting/updateMeetingInfo",
-	deleteMeetingById:baseUrl+"/meeting/deleteMeetingById",
-	searchUserTaskListByPage:workflow+"/workflow/searchUserTaskListByPage",
-	approvalMeeting: workflow + "/workflow/approvalMeeting",
-	selectUserPhotoAndName:baseUrl+"/user/selectUserPhotoAndName",
-	genUserSig: baseUrl + "/user/genUserSig",
-	searchRoomIdByUUID: baseUrl + "/meeting/searchRoomIdByUUID",
-	searchUserMeetingInMonth:baseUrl+"/meeting/searchUserMeetingInMonth"
+Vue.prototype.globalData = globalData;
+
+Vue.prototype.url = {
+	register: globalData.BASE_URL + "/user/register",
+	login: globalData.BASE_URL + "/user/login",
+	checkin: globalData.BASE_URL + "/checkin/checkin",
+	createFaceModel: globalData.BASE_URL + "/checkin/createFaceModel",
+	validCanCheckIn: globalData.BASE_URL + "/checkin/validCanCheckIn",
+	searchTodayCheckin: globalData.BASE_URL + "/checkin/searchTodayCheckin",
+	searchUserSummary: globalData.BASE_URL + "/user/searchUserSummary",
+	searchMonthCheckin: globalData.BASE_URL + "/checkin/searchMonthCheckin",
+	refreshMessage: globalData.BASE_URL + "/message/refreshMessage",
+	searchMessageByPage: globalData.BASE_URL + "/message/searchMessageByPage",
+	searchMessageById: globalData.BASE_URL + "/message/searchMessageById",
+	updateUnreadMessage: globalData.BASE_URL + "/message/updateUnreadMessage",
+	deleteMessageRefById: globalData.BASE_URL + "/message/deleteMessageRefById",
+	searchMyMeetingListByPage: globalData.BASE_URL + "/meeting/searchMyMeetingListByPage",
+	searchUserGroupByDept: globalData.BASE_URL + "/user/searchUserGroupByDept",
+	searchMembers: globalData.BASE_URL + "/user/searchMembers",
+	insertMeeting: globalData.BASE_URL + "/meeting/insertMeeting",
+	searchMeetingById: globalData.BASE_URL + "/meeting/searchMeetingById",
+	updateMeetingInfo: globalData.BASE_URL + "/meeting/updateMeetingInfo",
+	deleteMeetingById: globalData.BASE_URL + "/meeting/deleteMeetingById",
+	searchUserTaskListByPage: globalData.WORKFLOW_URL + "/workflow/searchUserTaskListByPage",
+	approvalMeeting: globalData.WORKFLOW_URL + "/workflow/approvalMeeting",
+	selectUserPhotoAndName: globalData.BASE_URL + "/user/selectUserPhotoAndName",
+	genUserSig: globalData.BASE_URL + "/user/genUserSig",
+	searchRoomIdByUUID: globalData.BASE_URL + "/meeting/searchRoomIdByUUID",
+	searchUserMeetingInMonth: globalData.BASE_URL + "/meeting/searchUserMeetingInMonth"
 }
 
 Vue.prototype.ajax=function(url,method,data,fun){
