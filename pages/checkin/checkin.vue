@@ -27,8 +27,9 @@
 			}
 		},
 		onLoad: function() {
+			const app = getApp();
 			qqmapsdk = new QQMapWX({
-				key: 'test'
+				key: app.globalData.QQMAP_KEY // 这样密钥不会暴露在代码里
 			});
 		},
 		// onShow: function() {
@@ -86,7 +87,7 @@
 					            method: 'GET',
 					            data: {
 					                location: `${latitude},${longitude}`, // 格式：lat,lng
-					                key: 'test' // 替换为你的开发密钥
+					                key: getApp().globalData.QQMAP_KEY // 替换为你的开发密钥
 					            },
 					            success: function(resp) {
 					                if (resp.statusCode === 200 && resp.data.status === 0) {

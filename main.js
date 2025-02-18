@@ -14,6 +14,8 @@ const globalData = getApp().globalData;
 
 Vue.prototype.globalData = globalData;
 
+Vue.prototype.code = globalData.CODE	
+
 Vue.prototype.url = {
 	register: globalData.BASE_URL + "/user/register",
 	login: globalData.BASE_URL + "/user/login",
